@@ -9,24 +9,27 @@ import com.google.gson.Gson;
 
 
 /***
- Glossary test = new Glossary();
+ Glossary test = Glossary.getInstance();
 
- WordDTO[] gl = test.getGlossary(Categories.CLOTHES);
-
- for (WordDTO el: gl ) {
-   System.out.println(el);
+ for (WordDTO el : test.getCategoryGlossary(Categories.FOOD)) {
+  System.out.println(el);
  }
  **/
 
-public class Glossary {
+public final class Glossary {
     private static final String basePath = new File("").getAbsolutePath();
     private final HashMap<Categories, WordDTO[]> glossary = new HashMap<>();
+    private static Glossary instance;
 
-    public Glossary() throws FileNotFoundException {
+    private Glossary() throws FileNotFoundException {
         loadAllGlossary();
     }
 
-    public WordDTO[] getGlossary(Categories category) {
+    public static Glossary getInstance() throws FileNotFoundException {
+        return instance == null ? new Glossary() : instance;
+    }
+
+    public WordDTO[] getCategoryGlossary(Categories category) {
         return this.glossary.get(category);
     }
 
