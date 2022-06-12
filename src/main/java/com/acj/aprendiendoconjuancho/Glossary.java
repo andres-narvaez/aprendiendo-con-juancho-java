@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Arrays;
 import java.util.HashMap;
 import com.google.gson.Gson;
 
@@ -31,6 +32,12 @@ public final class Glossary {
 
     public WordDTO[] getCategoryGlossary(Categories category) {
         return this.glossary.get(category);
+    }
+
+    public WordDTO[] getCategoryGlossaryByLevel(Categories category, Difficulty difficulty) {
+        WordDTO[] glossary = getCategoryGlossary(category);
+
+        return Arrays.stream(glossary).filter(word -> word.getDifficulty() == difficulty).toArray(WordDTO[]::new);
     }
 
     private void loadAllGlossary() throws FileNotFoundException {
