@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "value": "Schwein",
+    "difficulty": "LOW",
+    "imagePath": "/assets/words/images/animals/cerdo.png",
+    "audioPath": "/assets/words/audio/animals/cerdo.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 2,
+    "value": "Huhn",
+    "difficulty": "LOW",
+    "imagePath": "/assets/words/images/animals/pollo.png",
+    "audioPath": "/assets/words/audio/animals/pollo.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 3,
+    "value": "Rind",
+    "difficulty": "LOW",
+    "imagePath": "/assets/words/images/animals/vaca.png",
+    "audioPath": "/assets/words/audio/animals/vaca.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 4,
+    "value": "Schaf",
+    "difficulty": "LOW",
+    "imagePath": "/assets/words/images/animals/oveja.png",
+    "audioPath": "/assets/words/audio/animals/oveja.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 5,
+    "value": "Ziege",
+    "difficulty": "MEDIUM",
+    "imagePath": "/assets/words/images/animals/cabra.png",
+    "audioPath": "/assets/words/audio/animals/cabra.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 6,
+    "value": "Pferd",
+    "difficulty": "MEDIUM",
+    "imagePath": "/assets/words/images/animals/caballo.png",
+    "audioPath": "/assets/words/audio/animals/caballo.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 7,
+    "value": "Esel",
+    "difficulty": "MEDIUM",
+    "imagePath": "/assets/words/images/animals/burro.png",
+    "audioPath": "/assets/words/audio/animals/burro.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 8,
+    "value": "Giraffe",
+    "difficulty": "MEDIUM",
+    "imagePath": "/assets/words/images/animals/jirafa.png",
+    "audioPath": "/assets/words/audio/animals/jirafa.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 9,
+    "value": "Robbe",
+    "difficulty": "HIGH",
+    "imagePath": "/assets/words/images/animals/foca.png",
+    "audioPath": "/assets/words/audio/animals/foca.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 10,
+    "value": "Oktopus",
+    "difficulty": "HIGH",
+    "imagePath": "/assets/words/images/animals/pulpo.png",
+    "audioPath": "/assets/words/audio/animals/pulpo.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 11,
+    "value": "Hai",
+    "difficulty": "HIGH",
+    "imagePath": "/assets/words/images/animals/tiburon.png",
+    "audioPath": "/assets/words/audio/animals/tiburon.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 12,
+    "value": "Schlange",
+    "difficulty": "HIGH",
+    "imagePath": "/assets/words/images/animals/serpiente.png",
+    "audioPath": "/assets/words/audio/animals/serpiente.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  }
+]
