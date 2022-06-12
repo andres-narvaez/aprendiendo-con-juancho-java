@@ -15,6 +15,10 @@ public class ComplexityRules {
         return getNumberOfWordsBasedOnDifficulty(this.baseDifficulty);
     }
 
+    public int gePointsPerAnswer() {
+        return gePointsPerAnswerBasedOnDifficulty(this.baseDifficulty);
+    }
+
     public Difficulty getDifficulty() {
         return this.baseDifficulty;
     }
@@ -34,6 +38,15 @@ public class ComplexityRules {
             case LOW -> 4;
             case MEDIUM -> 6;
             case HIGH -> 8;
+        };
+    }
+
+    private int gePointsPerAnswerBasedOnDifficulty(Difficulty difficulty) {
+
+        return switch (difficulty) {
+            case LOW -> 10;
+            case MEDIUM -> 12;
+            case HIGH -> 14;
         };
     }
 
