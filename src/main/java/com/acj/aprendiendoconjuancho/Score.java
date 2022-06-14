@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Score {
     private int overallScore = 0;
-    private final HashMap<Level, Integer> scoreByLevel = new HashMap();
+    private final HashMap<Levels, Integer> scoreByLevel = new HashMap();
     private Difficulty difficulty;
     private ComplexityRules rules;
 
@@ -12,12 +12,13 @@ public class Score {
         this.difficulty = difficulty;
         this.rules = new ComplexityRules(this.difficulty);
 
-        scoreByLevel.put(Level.MATCH, 0);
-        scoreByLevel.put(Level.SORT, 0);
-        scoreByLevel.put(Level.LISTEN, 0);
+        scoreByLevel.put(Levels.MATCH, 0);
+        scoreByLevel.put(Levels.SORT, 0);
+        scoreByLevel.put(Levels.LISTEN, 0);
     }
 
-    public void addScore(Level level, int rightAnswers) {
+    public void addScore(Levels level, int rightAnswers) {
+        // TODO: validate don't receive greater rightAnswers and numberOfWords
         int numberOfQuestions = rules.getNumberOfWords();
         int pointsPerAnswer = rules.gePointsPerAnswer();
         int score = calculateScore(rightAnswers, numberOfQuestions, pointsPerAnswer);
@@ -30,7 +31,7 @@ public class Score {
         return overallScore;
     }
 
-    public int getLevelScore(Level level) {
+    public int getLevelScore(Levels level) {
         return scoreByLevel.get(level);
     }
 
