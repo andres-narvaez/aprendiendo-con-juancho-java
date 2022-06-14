@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Score {
     private int overallScore = 0;
-    private final HashMap<Level, int> scoreByLevel = new HashMap<Level, int>();
+    private final HashMap<Level, Integer> scoreByLevel = new HashMap();
     private Difficulty difficulty;
     private ComplexityRules rules;
 
