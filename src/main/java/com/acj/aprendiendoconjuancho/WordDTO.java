@@ -13,14 +13,16 @@ public class WordDTO {
     public String value;
     public Difficulty difficulty;
     public String imagePath;
+    public String audioPath;
     public Categories category;
     public String language;
 
-    public WordDTO(int id, String value, Difficulty difficulty, String imagePath, Categories category, String language) {
+    public WordDTO(int id, String value, Difficulty difficulty, String imagePath, String audioPath, Categories category, String language) {
         this.id = id;
         this.value = value;
         this.difficulty = difficulty;
         this.imagePath = imagePath;
+        this.audioPath = audioPath;
         this.category = category;
         this.language = language;
     }
