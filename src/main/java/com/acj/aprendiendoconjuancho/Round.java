@@ -119,7 +119,7 @@ public class Round {
 
     /**
      * Get the current level played by the player
-     * @return Levels
+     * @return Levels currentLevel
      */
     public Levels getCurrentLevel() {
         return currentLevel;
@@ -127,7 +127,7 @@ public class Round {
 
     /**
      * Set the level to be played by the player
-     * @return Levels
+     * @param currentLevel Levels
      */
     public void setCurrentLevel(Levels currentLevel) {
         this.currentLevel = currentLevel;
