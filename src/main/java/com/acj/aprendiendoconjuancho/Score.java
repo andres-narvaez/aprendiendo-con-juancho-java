@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Score {
     private int overallScore = 0;
-    private final HashMap<Levels, Integer> scoreByLevel = new HashMap();
+    private final HashMap<Levels, Integer> scoreByLevel = new HashMap<>();
     private Difficulty difficulty;
     private ComplexityRules rules;
 
@@ -18,13 +18,19 @@ public class Score {
     }
 
     public void addScore(Levels level, int rightAnswers) {
-        // TODO: validate don't receive greater rightAnswers and numberOfWords
         int numberOfQuestions = rules.getNumberOfWords();
-        int pointsPerAnswer = rules.gePointsPerAnswer();
+        if(rightAnswers > numberOfQuestions) {
+            throw new RuntimeException("Right answers could not be greater than number of words per level");
+        }
+        int pointsPerAnswer = rules.getPointsPerAnswer();
         int score = calculateScore(rightAnswers, numberOfQuestions, pointsPerAnswer);
 
         scoreByLevel.put(level, score);
         overallScore += score;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
     }
 
     public int getOverallScore() {

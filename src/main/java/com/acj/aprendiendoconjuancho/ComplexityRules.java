@@ -15,7 +15,7 @@ public class ComplexityRules {
         return getNumberOfWordsBasedOnDifficulty(this.baseDifficulty);
     }
 
-    public int gePointsPerAnswer() {
+    public int getPointsPerAnswer() {
         return gePointsPerAnswerBasedOnDifficulty(this.baseDifficulty);
     }
 
