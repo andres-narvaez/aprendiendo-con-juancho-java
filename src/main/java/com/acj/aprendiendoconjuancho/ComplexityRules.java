@@ -49,7 +49,7 @@ public class ComplexityRules {
 
     /**
      *
-     * @param difficulty Difficulty could be LOW, MEDIUM, HIGHT
+     * @param difficulty Difficulty could be LOW, MEDIUM, HIGH
      * @return int start time based on the difficulty
      */
     private int getTimeBasedOnDifficulty(Difficulty difficulty) {
@@ -63,7 +63,7 @@ public class ComplexityRules {
 
     /**
      *
-     * @param difficulty Difficulty could be LOW, MEDIUM, HIGHT
+     * @param difficulty Difficulty could be LOW, MEDIUM, HIGH
      * @return int number of words per level based on the difficulty
      */
     private int getNumberOfWordsBasedOnDifficulty(Difficulty difficulty) {
@@ -77,7 +77,7 @@ public class ComplexityRules {
 
     /**
      *
-     * @param difficulty Difficulty could be LOW, MEDIUM, HIGHT
+     * @param difficulty Difficulty could be LOW, MEDIUM, HIGH
      * @return int points earned per right question based on the difficulty
      */
     private int gePointsPerAnswerBasedOnDifficulty(Difficulty difficulty) {
