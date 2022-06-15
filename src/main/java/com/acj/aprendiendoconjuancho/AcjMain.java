@@ -10,6 +10,9 @@ import java.io.IOException;
 public class AcjMain extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        Countdown countdown = new Countdown();
+        countdown.start(6);
+
         FXMLLoader fxmlLoader = new FXMLLoader(AcjMain.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1333, 720);
         stage.setTitle("Hello!");

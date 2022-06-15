@@ -3,10 +3,10 @@ package com.acj.aprendiendoconjuancho;
 public class Level {
     private Levels name;
     private Categories category;
-    private Timer timer;
+    private Countdown timer;
     private WordDTO[] words;
 
-    public Level(Levels name, Categories category, Timer timer, WordDTO[] words) {
+    public Level(Levels name, Categories category, Countdown timer, WordDTO[] words) {
         this.name = name;
         this.category = category;
         this.timer = timer;
