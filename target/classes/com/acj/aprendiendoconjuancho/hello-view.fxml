@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -19,7 +20,7 @@
          <Image url="@../../../images/logo-main.png" />
       </image>
    </ImageView>
-   <TextField alignment="CENTER" styleClass="name-input" text="Ingresa tu nombre" />
+   <TextField alignment="CENTER" focusTraversable="false" promptText="Ingresa tu nombre" styleClass="name-input" />
     <Button onAction="#onHelloButtonClick" style="-fx-border-radius: 50px;" styleClass="base-button" text="EMPEZAR" textAlignment="CENTER">
       <effect>
          <DropShadow height="23.0" offsetX="4.0" offsetY="3.0" radius="11.25" spread="0.2" width="24.0">
@@ -27,7 +28,10 @@
                <Color opacity="0.5287356376647949" />
             </color>
          </DropShadow>
-      </effect></Button>
+      </effect>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
    <stylesheets>
       <URL value="@../../../styles/welcome.css" />
       <URL value="@../../../styles/common.css" />

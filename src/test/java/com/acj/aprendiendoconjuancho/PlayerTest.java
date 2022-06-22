@@ -14,7 +14,7 @@ class PlayerTest {
     @BeforeEach
     void setUp() {
         mockName = "Joe Doe";
-        playerInstance = new Player(mockName);
+        playerInstance = Player.getInstance(mockName);
     }
 
     @AfterEach

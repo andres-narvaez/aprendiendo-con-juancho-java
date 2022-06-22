@@ -1,14 +1,25 @@
 package com.acj.aprendiendoconjuancho;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class AcjMainController {
     @FXML
-    private Label welcomeText;
+    private TextField nameField;
 
     @FXML
-    protected void onHelloButtonClick() {
-        System.out.println("Button clicked");
+    public void initialize() {
+        nameFieldListener();
+    }
+
+    @FXML
+    protected void onStartButtonClick() {
+        String playerName = nameField.getText();
+        Player.getInstance(playerName);
+        System.out.println(nameField.getText());
+    }
+
+    private void nameFieldListener() {
+        nameField.setOnMouseClicked(e -> nameField.clear());
     }
 }

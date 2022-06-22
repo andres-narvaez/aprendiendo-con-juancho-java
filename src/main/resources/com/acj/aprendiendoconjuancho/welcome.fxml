@@ -19,8 +19,8 @@
          <Image url="@../../../images/logo-main.png" />
       </image>
    </ImageView>
-   <TextField alignment="CENTER" styleClass="name-input" text="Ingresa tu nombre" />
-    <Button onAction="#onHelloButtonClick" style="-fx-border-radius: 50px;" styleClass="base-button" text="EMPEZAR" textAlignment="CENTER">
+   <TextField fx:id="nameField" alignment="CENTER" styleClass="name-input" text="Ingresa tu nombre" />
+    <Button onAction="#onStartButtonClick" style="-fx-border-radius: 50px;" styleClass="base-button" text="EMPEZAR" textAlignment="CENTER">
       <effect>
          <DropShadow height="23.0" offsetX="4.0" offsetY="3.0" radius="11.25" spread="0.2" width="24.0">
             <color>
