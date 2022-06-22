@@ -5,7 +5,8 @@ import java.util.HashMap;
 /**
  * Stores and calculates the score for a round
  */
-public class Score {
+public final class Score {
+    private static Score instance;
     private int overallScore = 0;
     private final HashMap<Levels, Integer> scoreByLevel = new HashMap<>();
     private Difficulty difficulty;
@@ -14,7 +15,7 @@ public class Score {
     /**
      * @param difficulty Difficulty could be LOW, MEDIUM, HIGH
      */
-    public Score(Difficulty difficulty) {
+    private Score(Difficulty difficulty) {
         this.difficulty = difficulty;
         this.rules = new ComplexityRules(this.difficulty);
 
@@ -81,5 +82,17 @@ public class Score {
         int baseScore = rightAnswers * pointsPerAnswer;
 
         return succeedRatio == 100 ? baseScore + pointsPerAnswer : baseScore;
+    }
+
+    /**
+     * Creates a singleton instance of Score
+     * @param difficulty Difficulty could be LOW, MEDIUM, HIGH
+     */
+    public static  Score getInstance(Difficulty difficulty) {
+        if (instance == null) {
+            instance = new Score(difficulty);
+        }
+
+        return instance;
     }
 }

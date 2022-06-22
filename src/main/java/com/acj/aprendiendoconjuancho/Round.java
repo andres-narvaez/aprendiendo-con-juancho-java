@@ -31,7 +31,7 @@ public class Round {
         this.player = player;
         this.glossary = Glossary.getInstance();
         this.rules = new ComplexityRules(this.difficulty);
-        this.score = new Score(this.difficulty);
+        this.score = Score.getInstance(this.difficulty);
         buildLevels();
     }
 
