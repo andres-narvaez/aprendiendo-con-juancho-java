@@ -1,6 +1,5 @@
 package com.acj.aprendiendoconjuancho;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
@@ -17,14 +17,10 @@ public class CategoryController {
     private TextField nameField;
 
     @FXML
-    public void initialize() {
-
-    }
-
-    @FXML
-    private void onSendData(ActionEvent event) {
+    private void onSendData(MouseEvent event) {
+        ImageView image = (ImageView) event.getSource();
         Category category = new Category();
-        Category.setCategory(Categories.ANIMALS);
+        Category.setCategory(Categories.valueOf(image.getAccessibleText()));
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         try {
