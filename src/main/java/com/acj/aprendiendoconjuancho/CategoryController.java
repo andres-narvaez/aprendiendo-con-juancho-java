@@ -25,9 +25,8 @@ public class CategoryController {
     private void onSendData(ActionEvent event) {
         Category category = new Category();
         Category.setCategory(Categories.ANIMALS);
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        stage.close();
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("round.fxml"));
             RoundController controller = new RoundController();
@@ -35,8 +34,8 @@ public class CategoryController {
             loader.setController(controller);
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            window.setScene(scene);
+            window.show();
         } catch (IOException e) {
             System.err.printf("Error: %s%n", e.getMessage());
         }
