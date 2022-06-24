@@ -1,39 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="768.0" prefWidth="1366.0" spacing="20.0" styleClass="main-container" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.acj.aprendiendoconjuancho.CategoryController">
+<VBox alignment="CENTER" prefHeight="768.0" prefWidth="1366.0" spacing="20.0" styleClass="main-container" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.acj.aprendiendoconjuancho.CategoryController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
    <stylesheets>
-      <URL value="@../../../styles/welcome.css" />
+      <URL value="@../../../styles/categories.css" />
       <URL value="@../../../styles/common.css" />
    </stylesheets>
    <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#onSendData" accessibleText="ANIMALS">
-         <image>
-            <Image url="@../../../images/categories/animals.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#onSendData" accessibleText="CLOTHES">
-         <image>
-            <Image url="@../../../images/categories/clothes.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#onSendData" accessibleText="FOOD">
-         <image>
-            <Image url="@../../../images/categories/food.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#onSendData" accessibleText="NUMBERS">
-         <image>
-            <Image url="@../../../images/categories/numbers.png" />
-         </image>
-      </ImageView>
+      <GridPane maxWidth="450.0" prefHeight="340.0" prefWidth="876.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="100.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="100.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView accessibleText="NUMBERS" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#onSendData" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../images/categories/numbers.png" />
+               </image>
+            </ImageView>
+            <ImageView accessibleText="FOOD" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#onSendData" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@../../../images/categories/food.png" />
+               </image>
+            </ImageView>
+            <ImageView accessibleText="CLOTHES" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#onSendData" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../images/categories/clothes.png" />
+               </image>
+            </ImageView>
+            <ImageView accessibleText="ANIMALS" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#onSendData" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/categories/animals.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
    </children>
 </VBox>
