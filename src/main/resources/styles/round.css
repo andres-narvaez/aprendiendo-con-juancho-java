@@ -1,0 +1,7 @@
+.game-container {
+    -fx-background-image: url("../images/bk-round.png");
+}
+
+.left-container {
+    -fx-background-color: #73D7FF;
+}
