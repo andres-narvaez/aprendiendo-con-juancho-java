@@ -5,15 +5,7 @@ package com.acj.aprendiendoconjuancho;
  */
 public final class Player {
     private static Player instance;
-    private final String name;
-
-    /**
-     * Creates a new instance of Player
-     * @param name Name of player registered from the start
-     */
-    private Player(String name) {
-        this.name = name;
-    }
+    private String name;
 
     /**
      * Get the name of the player
@@ -24,12 +16,19 @@ public final class Player {
     }
 
     /**
-     * Creates a singleton instance of Player
+     * Set the name of the player
      * @param name Name of player registered from the start
      */
-    public static  Player getInstance(String name) {
-        if (instance == null) {
-            instance = new Player(name);
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Creates a singleton instance of Player
+     */
+    public static Player getInstance() {
+        if (instance == null ) {
+            instance = new Player();
         }
 
         return instance;

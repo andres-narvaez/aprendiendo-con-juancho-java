@@ -14,9 +14,6 @@ import java.io.IOException;
 
 public class CategoryController {
     @FXML
-    private TextField nameField;
-
-    @FXML
     private void onSendData(MouseEvent event) {
         ImageView image = (ImageView) event.getSource();
         Category category = new Category();

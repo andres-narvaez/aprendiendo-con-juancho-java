@@ -47,7 +47,7 @@
                         <Insets bottom="25.0" top="25.0" />
                      </VBox.margin>
                   </Button>
-                  <Label id="player-name" text="Nombre" textAlignment="CENTER">
+                  <Label id="player-name" fx:id="nameField" textAlignment="CENTER">
                      <font>
                         <Font size="27.0" />
                      </font>

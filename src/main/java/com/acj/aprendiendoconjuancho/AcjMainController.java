@@ -24,7 +24,7 @@ public class AcjMainController {
     @FXML
     protected void onStartButtonClick(ActionEvent event) throws IOException {
         String playerName = nameField.getText();
-        Player.getInstance(playerName);
+        Player.getInstance().setName(playerName);
         Parent tableViewParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("categories.fxml")));
         Scene tableViewScene = new Scene(tableViewParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -13,7 +13,10 @@ class RoundTest {
     private Player mockPlayer;
     @BeforeEach
     void setUp() throws FileNotFoundException {
-        mockPlayer = Player.getInstance("Jon Doe");
+        mockPlayer = Player.getInstance();
+
+        mockPlayer.setName("Jon Doe");
+
         instance = new Round(Categories.ANIMALS, Difficulty.LOW, mockPlayer);
     }
 

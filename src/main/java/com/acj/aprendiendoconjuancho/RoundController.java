@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -13,6 +14,10 @@ import java.io.IOException;
 
 public class RoundController {
     private Categories category;
+    private final Player player = Player.getInstance();
+
+    @FXML
+    private Label nameField;
 
     public void setCategory(Categories category) {
         this.category = category;
@@ -20,7 +25,7 @@ public class RoundController {
 
     @FXML
     public void initialize() {
-        System.out.println(this.category);
+        nameField.setText(player.getName());
     }
 
     @FXML
