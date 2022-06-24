@@ -5,3 +5,10 @@
 .left-container {
     -fx-background-color: #73D7FF;
 }
+
+.label-timer {
+    -fx-border-radius: 40px;
+    -fx-border-color: #fff;
+    -fx-border-style: solid;
+    -fx-border-width: 3px;
+}
