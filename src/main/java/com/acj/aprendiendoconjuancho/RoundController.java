@@ -53,9 +53,25 @@ public class RoundController {
         for(WordDTO word : words) {
             Label wordLabel = new Label();
             wordLabel.setText(word.getValue());
+            makeDraggable(wordLabel);
 
             roundVBox.getChildren().add(wordLabel);
         }
+    }
+
+    private double startX;
+    private double startY;
+
+    private void makeDraggable(Node node) {
+        node.setOnMousePressed(e -> {
+            startX = e.getSceneX() - node.getTranslateX();
+            startY = e.getSceneY() - node.getTranslateY();
+        });
+
+        node.setOnMouseDragged(e -> {
+            node.setTranslateX(e.getSceneX() -startX);
+            node.setTranslateY(e.getSceneY() -startY);
+        });
     }
 
     @FXML
