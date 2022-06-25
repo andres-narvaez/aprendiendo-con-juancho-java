@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
@@ -54,7 +56,9 @@ public class RoundController {
             Label wordLabel = new Label();
             wordLabel.setText(word.getValue());
             makeDraggable(wordLabel);
-
+            Circle circle = new Circle(50,50,50, Color.RED);
+            targetImage(circle);
+            roundVBox.getChildren().add(circle);
             roundVBox.getChildren().add(wordLabel);
         }
     }
@@ -71,6 +75,14 @@ public class RoundController {
         node.setOnMouseDragged(e -> {
             node.setTranslateX(e.getSceneX() -startX);
             node.setTranslateY(e.getSceneY() -startY);
+        });
+
+        //node.setOnDragOver();
+    }
+
+    private void targetImage(Node node) {
+        node.setOnDragDetected((MouseEvent e) -> {
+            System.out.println(e);
         });
     }
 
