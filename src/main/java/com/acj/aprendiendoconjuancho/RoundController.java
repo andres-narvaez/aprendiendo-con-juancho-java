@@ -1,5 +1,6 @@
 package com.acj.aprendiendoconjuancho;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,6 +19,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class RoundController {
+    EventBus eventBus = ServiceLocator.INSTANCE.getService(EventBus.class);
+
     private Categories category;
     private final Player player = Player.getInstance();
     private Round round;
@@ -27,6 +30,15 @@ public class RoundController {
 
     @FXML
     private VBox roundVBox;
+
+    @FXML
+    private Label countdownLabel;
+
+    public RoundController() {
+        eventBus.addEventHandler(GameEvent.UPDATE_COUNTDOWN, event -> {
+            updateCountdown();
+        });
+    }
 
     public void setCategory(Categories category) {
         this.category = category;
@@ -96,4 +108,17 @@ public class RoundController {
 
     }
 
+    @FXML
+    private void onClickStartRound(ActionEvent event) {
+        Level matchLevel = this.round.getLevel(this.round.getCurrentLevel());
+        Countdown countdown = matchLevel.getCountdown();
+        countdown.start(1000); // remove and call from Countdown?
+        eventBus.fireEvent(new GameEvent(GameEvent.START_COUNTDOWN));
+    }
+
+    @FXML
+    private void updateCountdown() {
+        // countdownLabel.setText("01:30");
+        System.out.println(">>> update countdown!");
+    }
 }

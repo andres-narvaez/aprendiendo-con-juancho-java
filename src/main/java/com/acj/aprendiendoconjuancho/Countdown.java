@@ -8,9 +8,19 @@ import java.util.TimerTask;
  * to limit the time to complete a challenge.
  */
 public class Countdown {
+    private EventBus eventBus = ServiceLocator.INSTANCE.getService(EventBus.class);
     private Timer timer = new java.util.Timer();
     private TimerTask task;
     private String count;
+
+    public Countdown() {
+        EventBus eventBus = ServiceLocator.INSTANCE.getService(EventBus.class);
+        eventBus.addEventHandler(GameEvent.START_COUNTDOWN, event -> {
+            System.out.println("> start countdown!");
+            System.out.println(event);
+            // start(1000);
+        });
+    }
 
     /**
      * Initializes the Countdown
@@ -23,7 +33,7 @@ public class Countdown {
             public void run() {
                 if (i >= 0) {
                     count = formatTime(i--);
-                    System.out.println(count);
+                    eventBus.fireEvent(new GameEvent(GameEvent.UPDATE_COUNTDOWN));
                 }
             }
         };

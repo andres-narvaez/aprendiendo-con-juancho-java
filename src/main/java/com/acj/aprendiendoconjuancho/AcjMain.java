@@ -18,6 +18,7 @@ public class AcjMain extends Application {
     }
 
     public static void main(String[] args) {
+        ServiceLocator.INSTANCE.registerService(EventBus.class, EventBusProvider.class);
         launch();
     }
 }

@@ -33,7 +33,7 @@
                         <Insets top="25.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label id="timer" styleClass="label-timer" text="00:00" textFill="WHITE">
+                  <Label id="countdown-label" fx:id="countdownLabel" styleClass="label-timer" text="00:00" textFill="WHITE">
                      <font>
                         <Font size="50.0" />
                      </font>
@@ -41,7 +41,7 @@
                         <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                      </padding>
                   </Label>
-                  <Button mnemonicParsing="false" styleClass="base-button" text="Empezar">
+                  <Button onAction="#onClickStartRound" mnemonicParsing="false" styleClass="base-button" text="Empezar">
                      <VBox.margin>
                         <Insets bottom="25.0" top="25.0" />
                      </VBox.margin>
