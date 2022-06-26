@@ -6,11 +6,10 @@ import javafx.event.EventType;
 import javafx.scene.Group;
 
 public class EventBusProvider implements  EventBus{
-    private Group group = new Group();
+    private final Group group = new Group();
 
     @Override
     public void fireEvent(Event event) {
-        System.out.println("Firing event: " + event);
         group.fireEvent(event);
     }
 

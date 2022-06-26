@@ -1,6 +1,8 @@
 package com.acj.aprendiendoconjuancho;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,7 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -36,7 +38,7 @@ public class RoundController {
 
     public RoundController() {
         eventBus.addEventHandler(GameEvent.UPDATE_COUNTDOWN, event -> {
-            updateCountdown();
+            updateCountdown(event.getCount());
         });
     }
 
@@ -67,8 +69,8 @@ public class RoundController {
         for(WordDTO word : words) {
             Label wordLabel = new Label();
             wordLabel.setText(word.getValue());
-            makeDraggable(wordLabel);
             Circle circle = new Circle(50,50,50, Color.RED);
+            makeDraggable(wordLabel, circle);
             targetImage(circle);
             roundVBox.getChildren().add(circle);
             roundVBox.getChildren().add(wordLabel);
@@ -78,7 +80,7 @@ public class RoundController {
     private double startX;
     private double startY;
 
-    private void makeDraggable(Node node) {
+    private void makeDraggable(Label node, Node target) {
         node.setOnMousePressed(e -> {
             startX = e.getSceneX() - node.getTranslateX();
             startY = e.getSceneY() - node.getTranslateY();
@@ -87,12 +89,12 @@ public class RoundController {
         node.setOnMouseDragged(e -> {
             node.setTranslateX(e.getSceneX() -startX);
             node.setTranslateY(e.getSceneY() -startY);
+            System.out.println("setOnMouseDragged");
         });
-
-        //node.setOnDragOver();
     }
 
     private void targetImage(Node node) {
+        //node.intersects();
         node.setOnDragDetected((MouseEvent e) -> {
             System.out.println(e);
         });
@@ -112,13 +114,14 @@ public class RoundController {
     private void onClickStartRound(ActionEvent event) {
         Level matchLevel = this.round.getLevel(this.round.getCurrentLevel());
         Countdown countdown = matchLevel.getCountdown();
-        countdown.start(1000); // remove and call from Countdown?
+        countdown.start(this.round.getRules().getStartTime());
         eventBus.fireEvent(new GameEvent(GameEvent.START_COUNTDOWN));
     }
 
     @FXML
-    private void updateCountdown() {
-        // countdownLabel.setText("01:30");
-        System.out.println(">>> update countdown!");
+    private void updateCountdown(String count) {
+        Platform.runLater(
+                () -> countdownLabel.setText(count)
+        );
     }
 }

@@ -9,6 +9,16 @@ public class GameEvent extends Event {
 
     public static final EventType<GameEvent> START_COUNTDOWN = new EventType<>(Event.ANY, "START_COUNTDOWN");
     public static final EventType<GameEvent> UPDATE_COUNTDOWN = new EventType<>(Event.ANY, "UPDATE_COUNTDOWN");
+    private String count;
+
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
 
     public GameEvent(EventType<GameEvent> type) {
         super(type);

@@ -8,32 +8,25 @@ import java.util.TimerTask;
  * to limit the time to complete a challenge.
  */
 public class Countdown {
-    private EventBus eventBus = ServiceLocator.INSTANCE.getService(EventBus.class);
-    private Timer timer = new java.util.Timer();
-    private TimerTask task;
+    private final EventBus eventBus = ServiceLocator.INSTANCE.getService(EventBus.class);
+    private final Timer timer = new java.util.Timer();
     private String count;
-
-    public Countdown() {
-        EventBus eventBus = ServiceLocator.INSTANCE.getService(EventBus.class);
-        eventBus.addEventHandler(GameEvent.START_COUNTDOWN, event -> {
-            System.out.println("> start countdown!");
-            System.out.println(event);
-            // start(1000);
-        });
-    }
 
     /**
      * Initializes the Countdown
      * @param time Integer length time of the countdown
      */
     public void start(Integer time) {
-        task = new TimerTask() {
+        TimerTask task = new TimerTask() {
             int i = time;
+
             @Override
             public void run() {
                 if (i >= 0) {
                     count = formatTime(i--);
-                    eventBus.fireEvent(new GameEvent(GameEvent.UPDATE_COUNTDOWN));
+                    GameEvent event = new GameEvent(GameEvent.UPDATE_COUNTDOWN);
+                    event.setCount(count);
+                    eventBus.fireEvent(event);
                 }
             }
         };
