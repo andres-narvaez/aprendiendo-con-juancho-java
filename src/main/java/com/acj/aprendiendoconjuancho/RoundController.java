@@ -5,9 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.*;
@@ -36,9 +38,16 @@ public class RoundController {
     @FXML
     private Label countdownLabel;
 
+    @FXML
+    private Button gameButton;
+
     public RoundController() {
         eventBus.addEventHandler(GameEvent.UPDATE_COUNTDOWN, event -> {
             updateCountdown(event.getCount());
+            updateGameButton(GameStatus.PLAYING);
+        });
+        eventBus.addEventHandler(GameEvent.END_COUNTDOWN, event -> {
+            updateGameButton(GameStatus.HOLD);
         });
     }
 
@@ -71,7 +80,6 @@ public class RoundController {
             wordLabel.setText(word.getValue());
             Circle circle = new Circle(50,50,50, Color.RED);
             makeDraggable(wordLabel, circle);
-            targetImage(circle);
             roundVBox.getChildren().add(circle);
             roundVBox.getChildren().add(wordLabel);
         }
@@ -89,14 +97,16 @@ public class RoundController {
         node.setOnMouseDragged(e -> {
             node.setTranslateX(e.getSceneX() -startX);
             node.setTranslateY(e.getSceneY() -startY);
-            System.out.println("setOnMouseDragged");
-        });
-    }
 
-    private void targetImage(Node node) {
-        //node.intersects();
-        node.setOnDragDetected((MouseEvent e) -> {
-            System.out.println(e);
+        });
+
+        node.setOnMouseReleased(e -> {
+            System.out.println("setOnMouseReleased");
+            System.out.println("word :" + e.getSceneX() + " " + e.getSceneY());
+            Point2D word = node.localToScene(0.0,0.0);
+            System.out.println("word point 2D :" + word.getX() + " " + word.getY());
+            Point2D circle = target.localToScene(0.0, 0.0);
+            System.out.println("circle :" + circle.getX() + " " + circle.getY());
         });
     }
 
@@ -112,16 +122,36 @@ public class RoundController {
 
     @FXML
     private void onClickStartRound(ActionEvent event) {
-        Level matchLevel = this.round.getLevel(this.round.getCurrentLevel());
-        Countdown countdown = matchLevel.getCountdown();
-        countdown.start(this.round.getRules().getStartTime());
-        eventBus.fireEvent(new GameEvent(GameEvent.START_COUNTDOWN));
+        if(gameButton.getText().equals("Empezar") || gameButton.getText().equals("Reintentar")) {
+            Level matchLevel = this.round.getLevel(this.round.getCurrentLevel());
+            Countdown countdown = matchLevel.getCountdown();
+            countdown.start(this.round.getRules().getStartTime());
+            eventBus.fireEvent(new GameEvent(GameEvent.START_COUNTDOWN));
+        } else if(gameButton.getText().equals("Terminar")) {
+            GameEvent endEvent = new GameEvent(GameEvent.END_COUNTDOWN);
+            eventBus.fireEvent(endEvent);
+            updateCountdown("00:00");
+        }
     }
 
     @FXML
     private void updateCountdown(String count) {
         Platform.runLater(
                 () -> countdownLabel.setText(count)
+        );
+    }
+
+    @FXML
+    private void updateGameButton(GameStatus status) {
+        String text = switch (status) {
+            case READY -> "Empezar";
+            case PLAYING -> "Terminar";
+            case HOLD -> "Reintentar";
+            case FINISHED -> "Salir";
+        };
+
+        Platform.runLater(
+                () -> gameButton.setText(text)
         );
     }
 }

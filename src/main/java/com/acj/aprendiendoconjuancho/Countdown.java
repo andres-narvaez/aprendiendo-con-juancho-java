@@ -9,14 +9,20 @@ import java.util.TimerTask;
  */
 public class Countdown {
     private final EventBus eventBus = ServiceLocator.INSTANCE.getService(EventBus.class);
-    private final Timer timer = new java.util.Timer();
+    private Timer timer;
     private String count;
+
+    public Countdown() {
+        eventBus.addEventHandler(GameEvent.END_COUNTDOWN, event -> stop());
+    }
+
 
     /**
      * Initializes the Countdown
      * @param time Integer length time of the countdown
      */
     public void start(Integer time) {
+        timer = new java.util.Timer();
         TimerTask task = new TimerTask() {
             int i = time;
 
@@ -27,10 +33,23 @@ public class Countdown {
                     GameEvent event = new GameEvent(GameEvent.UPDATE_COUNTDOWN);
                     event.setCount(count);
                     eventBus.fireEvent(event);
+                    if(i == 0) {
+                        GameEvent endEvent = new GameEvent(GameEvent.END_COUNTDOWN);
+                        eventBus.fireEvent(endEvent);
+                    }
                 }
             }
         };
         timer.scheduleAtFixedRate(task, 0, 1000);
+    }
+
+    /**
+     * Stops the countdown
+     */
+    public void stop() {
+        timer.cancel();
+        timer.purge();
+        timer = null;
     }
 
     /**

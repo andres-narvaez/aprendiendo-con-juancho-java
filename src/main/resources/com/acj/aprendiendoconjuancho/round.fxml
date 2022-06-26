@@ -41,7 +41,7 @@
                         <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                      </padding>
                   </Label>
-                  <Button onAction="#onClickStartRound" mnemonicParsing="false" styleClass="base-button" text="Empezar">
+                  <Button onAction="#onClickStartRound" mnemonicParsing="false" fx:id="gameButton" styleClass="base-button" text="Empezar">
                      <VBox.margin>
                         <Insets bottom="25.0" top="25.0" />
                      </VBox.margin>
