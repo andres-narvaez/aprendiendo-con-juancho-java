@@ -4,10 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
@@ -45,6 +42,18 @@ public final class Glossary {
      */
     public WordDTO[] getCategoryGlossary(Categories category) {
         return this.glossary.get(category);
+    }
+
+    /**
+     * @param word String with the value of the word
+     * @return Shuffle list of each character of the given word
+     */
+    public List<String> getShuffleWord(String word) {
+        List<String> listWord = new ArrayList<>(Arrays.asList(word.split("")));
+
+        Collections.shuffle(listWord);
+
+        return listWord;
     }
 
     /**

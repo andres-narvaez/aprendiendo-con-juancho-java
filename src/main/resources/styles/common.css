@@ -6,3 +6,7 @@
     -fx-font-size: 24px;
     -fx-font-family: "SF Pro";
 }
+
+.green-button {
+    -fx-background-color: #CBFF5C;
+}

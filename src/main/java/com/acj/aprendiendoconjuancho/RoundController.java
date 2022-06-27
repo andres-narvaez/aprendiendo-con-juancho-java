@@ -50,6 +50,9 @@ public class RoundController {
     @FXML
     private Label overallPoints;
 
+    @FXML
+    private Button gameButtonNext;
+
     public RoundController() {
         eventBus.addEventHandler(GameEvent.START_COUNTDOWN, event -> {
             clearBoxes();
@@ -78,6 +81,10 @@ public class RoundController {
     }
 
     private void buildRound(Levels level) {
+        clearBoxes();
+        showNextButton(false);
+        updateGameButton(GameStatus.READY);
+        updateLevelStats();
         switch (level) {
             case MATCH -> buildMatchRound();
             case SORT -> buildSortRound();
@@ -131,6 +138,7 @@ public class RoundController {
                         Image im = new Image("file:" + basePath + word.getImagePath());
                         circle.setFill(new ImagePattern(im));
                         circle.setStroke(Color.RED);
+                        circle.setStrokeWidth(3);
                         circle.getStyleClass().add("match-circle-image");
                         MatchRoundItem item = new MatchRoundItem(wordLabel, circle);
                         item.makeDraggable();
@@ -147,7 +155,13 @@ public class RoundController {
 
     @FXML
     private void buildSortRound() {
-
+        System.out.println("Listen");
+        Platform.runLater(
+                () -> {
+                    Level matchLevel = this.round.getLevel(Levels.MATCH);
+                    WordDTO[] words = matchLevel.getWords();
+                }
+        );
     }
 
     @FXML
@@ -166,7 +180,25 @@ public class RoundController {
             GameEvent endEvent = new GameEvent(GameEvent.END_COUNTDOWN);
             eventBus.fireEvent(endEvent);
             updateCountdown("00:00");
+            showNextButton(true);
         }
+    }
+
+    @FXML
+    private void showNextButton(Boolean show) {
+        gameButtonNext.setVisible(show);
+    }
+
+    @FXML
+    private void onClickNextRound(ActionEvent event) {
+        Levels currentLevel = this.round.getCurrentLevel();
+        Levels nextLevel = switch (currentLevel) {
+            case MATCH -> Levels.SORT;
+            case SORT -> Levels.LISTEN;
+            default -> Levels.MATCH;
+        };
+        this.round.setCurrentLevel(nextLevel);
+        buildRound(nextLevel);
     }
 
     @FXML

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -44,8 +45,14 @@
                   </Label>
                   <Button fx:id="gameButton" mnemonicParsing="false" onAction="#onClickStartRound" styleClass="base-button" text="Empezar">
                      <VBox.margin>
-                        <Insets bottom="25.0" top="25.0" />
+                        <Insets bottom="15.0" top="25.0" />
                      </VBox.margin>
+                  </Button>
+                  <Button fx:id="gameButtonNext" mnemonicParsing="false" onAction="#onClickNextRound" text="Siguiente" visible="false">
+                     <styleClass>
+                        <String fx:value="base-button" />
+                        <String fx:value="green-button" />
+                     </styleClass>
                   </Button>
                   <Label id="player-name" fx:id="nameField" textAlignment="CENTER">
                      <font>
