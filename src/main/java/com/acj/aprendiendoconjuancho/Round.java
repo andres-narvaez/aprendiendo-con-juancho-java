@@ -46,7 +46,7 @@ public class Round {
                 level,
                 this.category,
                 countdown,
-                this.glossary.getCategoryGlossaryByLevel(this.category, this.difficulty)
+                this.glossary.getCategoryGlossaryByLevel(this.category, this.difficulty, this.rules.getNumberOfWords())
             );
             levels.put(level, instance);
         }

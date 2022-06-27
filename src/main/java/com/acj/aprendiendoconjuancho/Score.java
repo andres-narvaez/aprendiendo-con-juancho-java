@@ -36,6 +36,10 @@ public final class Score {
         int pointsPerAnswer = rules.getPointsPerAnswer();
         int score = calculateScore(rightAnswers, numberOfQuestions, pointsPerAnswer);
 
+        if(scoreByLevel.get(level) > 0) {
+            overallScore -= scoreByLevel.get(level);
+        }
+
         scoreByLevel.put(level, score);
         overallScore += score;
     }

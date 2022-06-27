@@ -2,38 +2,38 @@ package com.acj.aprendiendoconjuancho;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Point2D;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.*;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class RoundController {
     EventBus eventBus = ServiceLocator.INSTANCE.getService(EventBus.class);
-
+    private static final String basePath = new File("").getAbsolutePath();
     private Categories category;
     private final Player player = Player.getInstance();
     private Round round;
+    private List<MatchRoundItem> matchRoundItemList;
 
     @FXML
     private Label nameField;
 
     @FXML
-    private VBox roundVBox;
+    private FlowPane topBox;
+
+    @FXML
+    private FlowPane bottomBox;
 
     @FXML
     private Label countdownLabel;
@@ -41,13 +41,29 @@ public class RoundController {
     @FXML
     private Button gameButton;
 
+    @FXML
+    private Label levelNumber;
+
+    @FXML
+    private Label levelPoints;
+
+    @FXML
+    private Label overallPoints;
+
     public RoundController() {
+        eventBus.addEventHandler(GameEvent.START_COUNTDOWN, event -> {
+            clearBoxes();
+            buildRound(round.getCurrentLevel());
+        });
         eventBus.addEventHandler(GameEvent.UPDATE_COUNTDOWN, event -> {
             updateCountdown(event.getCount());
             updateGameButton(GameStatus.PLAYING);
         });
         eventBus.addEventHandler(GameEvent.END_COUNTDOWN, event -> {
             updateGameButton(GameStatus.HOLD);
+            clearMatchRoundItems();
+            calculateScore();
+            updateLevelStats();
         });
     }
 
@@ -59,7 +75,6 @@ public class RoundController {
     public void initialize() throws FileNotFoundException {
         round = new Round(this.category, Difficulty.LOW, this.player);
         nameField.setText(player.getName());
-        buildRound(round.getCurrentLevel());
     }
 
     private void buildRound(Levels level) {
@@ -71,43 +86,63 @@ public class RoundController {
     }
 
     @FXML
-    private void buildMatchRound() {
-        Level matchLevel = this.round.getLevel(Levels.MATCH);
-        WordDTO[] words = matchLevel.getWords();
-
-        for(WordDTO word : words) {
-            Label wordLabel = new Label();
-            wordLabel.setText(word.getValue());
-            Circle circle = new Circle(50,50,50, Color.RED);
-            makeDraggable(wordLabel, circle);
-            roundVBox.getChildren().add(circle);
-            roundVBox.getChildren().add(wordLabel);
-        }
+    private void clearBoxes() {
+        Platform.runLater(
+                () -> {
+                    if(matchRoundItemList != null) {
+                        for (MatchRoundItem item: matchRoundItemList
+                             ) {
+                            item.removeDraggable();
+                            topBox.getChildren().remove(item.getWordNode());
+                            bottomBox.getChildren().remove(item.getImageTarget());
+                        }
+                    }
+                }
+        );
     }
 
-    private double startX;
-    private double startY;
+    @FXML
+    private void clearMatchRoundItems() {
+        Platform.runLater(
+                () -> {
+                    if(matchRoundItemList != null) {
+                        for (MatchRoundItem item: matchRoundItemList
+                        ) {
+                            item.removeDraggable();
+                        }
+                    }
+                }
+        );
+    }
 
-    private void makeDraggable(Label node, Node target) {
-        node.setOnMousePressed(e -> {
-            startX = e.getSceneX() - node.getTranslateX();
-            startY = e.getSceneY() - node.getTranslateY();
-        });
+    @FXML
+    private void buildMatchRound() {
+        Platform.runLater(
+                () -> {
+                    Level matchLevel = this.round.getLevel(Levels.MATCH);
+                    WordDTO[] words = matchLevel.getWords();
+                    matchRoundItemList = new ArrayList<>();
 
-        node.setOnMouseDragged(e -> {
-            node.setTranslateX(e.getSceneX() -startX);
-            node.setTranslateY(e.getSceneY() -startY);
+                    for (WordDTO word : words) {
+                        Label wordLabel = new Label();
+                        wordLabel.setText(word.getValue());
+                        wordLabel.getStyleClass().add("match-word");
+                        Circle circle = new Circle(80, 80, 80, Color.WHITE);
+                        Image im = new Image("file:" + basePath + word.getImagePath());
+                        circle.setFill(new ImagePattern(im));
+                        circle.setStroke(Color.RED);
+                        circle.getStyleClass().add("match-circle-image");
+                        MatchRoundItem item = new MatchRoundItem(wordLabel, circle);
+                        item.makeDraggable();
+                        matchRoundItemList.add(item);
+                        topBox.getChildren().add(wordLabel);
+                        bottomBox.getChildren().add(circle);
+                    }
 
-        });
+                    topBox.toFront();
+                }
+        );
 
-        node.setOnMouseReleased(e -> {
-            System.out.println("setOnMouseReleased");
-            System.out.println("word :" + e.getSceneX() + " " + e.getSceneY());
-            Point2D word = node.localToScene(0.0,0.0);
-            System.out.println("word point 2D :" + word.getX() + " " + word.getY());
-            Point2D circle = target.localToScene(0.0, 0.0);
-            System.out.println("circle :" + circle.getX() + " " + circle.getY());
-        });
     }
 
     @FXML
@@ -152,6 +187,51 @@ public class RoundController {
 
         Platform.runLater(
                 () -> gameButton.setText(text)
+        );
+    }
+
+    private void calculateScore() {
+        Levels level = this.round.getCurrentLevel();
+        switch (level) {
+            case MATCH -> {
+                int rightAnswers = MatchRound.calculateAssertions(matchRoundItemList);
+                this.round.getScore().addScore(level, rightAnswers);
+                resolveMatchScore(this.round.getScore().getLevelScore(level));
+            }
+            default -> {
+            }
+        }
+    }
+
+    @FXML
+    private void resolveMatchScore(int Score) {
+        Platform.runLater(
+                () -> {
+                    if(matchRoundItemList != null) {
+                        for (MatchRoundItem item: matchRoundItemList
+                        ) {
+                            Circle circle = (Circle) item.getImageTarget();
+                            if(item.getOnTarget()) circle.setStroke(Color.GREENYELLOW);
+                        }
+                    }
+                }
+        );
+    }
+
+    @FXML
+    private void updateLevelStats() {
+        Platform.runLater(
+                () -> {
+                    Levels level = this.round.getCurrentLevel();
+                    String levelText = switch (level) {
+                        case MATCH -> "1";
+                        case SORT -> "2";
+                        case LISTEN -> "3";
+                    };
+                    levelNumber.setText(levelText);
+                    levelPoints.setText(String.valueOf(this.round.getScore().getLevelScore(level)));
+                    overallPoints.setText(String.valueOf(this.round.getScore().getOverallScore()));
+                }
         );
     }
 }

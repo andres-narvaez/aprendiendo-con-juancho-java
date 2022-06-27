@@ -36,7 +36,7 @@ class ScoreTest {
         scoreInstance.addScore(Levels.MATCH, 4);
         scoreInstance.addScore(Levels.SORT, 4);
         scoreInstance.addScore(Levels.LISTEN, 4);
-        Assertions.assertEquals(294, scoreInstance.getOverallScore());
+        Assertions.assertEquals(144, scoreInstance.getOverallScore());
     }
 
     @Test

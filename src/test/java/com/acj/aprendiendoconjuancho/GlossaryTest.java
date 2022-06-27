@@ -33,7 +33,7 @@ class GlossaryTest {
 
     @Test
     void getCategoryGlossaryByLevel() {
-        WordDTO[] testGlossary = instance.getCategoryGlossaryByLevel(Categories.ANIMALS, Difficulty.LOW);
+        WordDTO[] testGlossary = instance.getCategoryGlossaryByLevel(Categories.ANIMALS, Difficulty.LOW, 6);
         assertEquals(Difficulty.LOW, testGlossary[0].getDifficulty());
     }
 }

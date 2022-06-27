@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -41,7 +42,7 @@
                         <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                      </padding>
                   </Label>
-                  <Button onAction="#onClickStartRound" mnemonicParsing="false" fx:id="gameButton" styleClass="base-button" text="Empezar">
+                  <Button fx:id="gameButton" mnemonicParsing="false" onAction="#onClickStartRound" styleClass="base-button" text="Empezar">
                      <VBox.margin>
                         <Insets bottom="25.0" top="25.0" />
                      </VBox.margin>
@@ -54,13 +55,62 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Label>
+                  <Label text="Este es tu progreso">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="146.0" prefWidth="239.0">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="79.0">
+                           <children>
+                              <Label fx:id="levelNumber" alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="level-number" text="1" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label styleClass="level-label" text="Nivel" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="79.0">
+                           <children>
+                              <Label fx:id="levelPoints" alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="points-level" text="0" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <Label styleClass="level-label" text="Puntos" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="79.0">
+                           <children>
+                              <Label fx:id="overallPoints" alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="points-overall" text="0" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label styleClass="level-label" text="Total" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>
       </Pane>
       <Pane id="round-playground" prefHeight="200.0" prefWidth="1127.0" styleClass="game-container">
          <children>
-            <VBox id="round-container" fx:id="roundVBox" prefHeight="768.0" prefWidth="1127.0" />
+            <FlowPane id="top-container" fx:id="topBox" hgap="10.0" layoutX="351.0" layoutY="14.0" prefHeight="219.0" prefWidth="776.0" vgap="15.0">
+               <padding>
+                  <Insets top="30.0" />
+               </padding></FlowPane>
+            <FlowPane id="down-container" fx:id="bottomBox" hgap="10.0" layoutX="209.0" layoutY="245.0" prefHeight="460.0" prefWidth="891.0" vgap="10.0" />
          </children></Pane>
    </children>
    <stylesheets>

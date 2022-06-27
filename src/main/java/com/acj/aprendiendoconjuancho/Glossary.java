@@ -5,7 +5,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.google.gson.Gson;
 
 /**
@@ -49,10 +53,17 @@ public final class Glossary {
      * @param difficulty Difficulty could be LOW, MEDIUM, HIGH
      * @return Array of WordDTO
      */
-    public WordDTO[] getCategoryGlossaryByLevel(Categories category, Difficulty difficulty) {
+    public WordDTO[] getCategoryGlossaryByLevel(Categories category, Difficulty difficulty, int numberOfQuestions) {
         WordDTO[] glossary = getCategoryGlossary(category);
+        List<WordDTO> wordList = Arrays.stream(glossary)
+                .filter(word -> word.getDifficulty() == difficulty)
+                .collect(Collectors.toList());
+        Collections.shuffle(wordList);
 
-        return Arrays.stream(glossary).filter(word -> word.getDifficulty() == difficulty).toArray(WordDTO[]::new);
+        return Arrays.stream(wordList.toArray())
+                .skip(0)
+                .limit(numberOfQuestions)
+                .toArray(WordDTO[]::new);
     }
 
     /**

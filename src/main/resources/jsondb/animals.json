@@ -3,7 +3,7 @@
     "id": 1,
     "value": "Schwein",
     "difficulty": "LOW",
-    "imagePath": "/assets/words/images/animals/cerdo.png",
+    "imagePath": "/src/main/resources/images/animals/cerdo.png",
     "audioPath": "/assets/words/audio/animals/cerdo.mp3",
     "category": "ANIMALS",
     "language": "DEU"
@@ -12,7 +12,7 @@
     "id": 2,
     "value": "Huhn",
     "difficulty": "LOW",
-    "imagePath": "/assets/words/images/animals/pollo.png",
+    "imagePath": "/src/main/resources/images/animals/pollo.png",
     "audioPath": "/assets/words/audio/animals/pollo.mp3",
     "category": "ANIMALS",
     "language": "DEU"
@@ -21,7 +21,7 @@
     "id": 3,
     "value": "Rind",
     "difficulty": "LOW",
-    "imagePath": "/assets/words/images/animals/vaca.png",
+    "imagePath": "/src/main/resources/images/animals/vaca.png",
     "audioPath": "/assets/words/audio/animals/vaca.mp3",
     "category": "ANIMALS",
     "language": "DEU"
@@ -30,7 +30,7 @@
     "id": 4,
     "value": "Schaf",
     "difficulty": "LOW",
-    "imagePath": "/assets/words/images/animals/oveja.png",
+    "imagePath": "/src/main/resources/images/animals/oveja.png",
     "audioPath": "/assets/words/audio/animals/oveja.mp3",
     "category": "ANIMALS",
     "language": "DEU"
@@ -111,7 +111,7 @@
     "id": 13,
     "value": "Pferd",
     "difficulty": "LOW",
-    "imagePath": "/assets/words/images/animals/caballo.png",
+    "imagePath": "/src/main/resources/images/animals/caballo.png",
     "audioPath": "/assets/words/audio/animals/caballo.mp3",
     "category": "ANIMALS",
     "language": "DEU"
@@ -120,7 +120,7 @@
     "id": 14,
     "value": "Panda",
     "difficulty": "LOW",
-    "imagePath": "/assets/words/images/animals/panda.png",
+    "imagePath": "/src/main/resources/images/animals/panda.png",
     "audioPath": "/assets/words/audio/animals/panda.mp3",
     "category": "ANIMALS",
     "language": "DEU"

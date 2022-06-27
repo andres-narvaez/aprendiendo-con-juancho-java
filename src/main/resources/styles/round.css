@@ -12,3 +12,43 @@
     -fx-border-style: solid;
     -fx-border-width: 3px;
 }
+
+.match-circle-image {
+    -fx-padding: 20px;
+}
+
+.level-number {
+    -fx-border-radius: 80px;
+    -fx-border-color: #fff;
+    -fx-border-style: solid;
+    -fx-border-width: 3px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 10, 0, 3, 4);
+}
+
+.points-level {
+    -fx-border-radius: 80px;
+    -fx-border-color: #81FF5C;
+    -fx-border-style: solid;
+    -fx-border-width: 3px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 10, 0, 3, 4);
+}
+
+.points-overall {
+    -fx-border-radius: 80px;
+    -fx-border-color: #FF17B3;
+    -fx-border-style: solid;
+    -fx-border-width: 3px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 10, 0, 3, 4);
+}
+
+.level-label {
+    -fx-padding: 10px 0px 0px 0px;
+}
+
+.match-word {
+    -fx-padding: 4px 12px;
+    -fx-background-color: #FF73A0;
+    -fx-background-radius: 20px;
+    -fx-font-size: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 10, 0, 1, 2);
+}
