@@ -30,9 +30,6 @@ public final class Score {
      */
     public void addScore(Levels level, int rightAnswers) {
         int numberOfQuestions = rules.getNumberOfWords();
-        if(rightAnswers > numberOfQuestions) {
-            throw new RuntimeException("Right answers could not be greater than number of words per level");
-        }
         int pointsPerAnswer = rules.getPointsPerAnswer();
         int score = calculateScore(rightAnswers, numberOfQuestions, pointsPerAnswer);
 

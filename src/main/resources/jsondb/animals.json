@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "value": "Schwein",
+    "value": "schwein",
     "difficulty": "LOW",
     "imagePath": "/src/main/resources/images/animals/cerdo.png",
     "audioPath": "/assets/words/audio/animals/cerdo.mp3",
@@ -10,7 +10,7 @@
   },
   {
     "id": 2,
-    "value": "Huhn",
+    "value": "huhn",
     "difficulty": "LOW",
     "imagePath": "/src/main/resources/images/animals/pollo.png",
     "audioPath": "/assets/words/audio/animals/pollo.mp3",
@@ -19,7 +19,7 @@
   },
   {
     "id": 3,
-    "value": "Rind",
+    "value": "rind",
     "difficulty": "LOW",
     "imagePath": "/src/main/resources/images/animals/vaca.png",
     "audioPath": "/assets/words/audio/animals/vaca.mp3",
@@ -28,7 +28,7 @@
   },
   {
     "id": 4,
-    "value": "Schaf",
+    "value": "schaf",
     "difficulty": "LOW",
     "imagePath": "/src/main/resources/images/animals/oveja.png",
     "audioPath": "/assets/words/audio/animals/oveja.mp3",
@@ -109,7 +109,7 @@
   },
   {
     "id": 13,
-    "value": "Pferd",
+    "value": "pferd",
     "difficulty": "LOW",
     "imagePath": "/src/main/resources/images/animals/caballo.png",
     "audioPath": "/assets/words/audio/animals/caballo.mp3",
@@ -118,7 +118,7 @@
   },
   {
     "id": 14,
-    "value": "Panda",
+    "value": "panda",
     "difficulty": "LOW",
     "imagePath": "/src/main/resources/images/animals/panda.png",
     "audioPath": "/assets/words/audio/animals/panda.mp3",

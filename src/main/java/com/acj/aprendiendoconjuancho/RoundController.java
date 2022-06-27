@@ -7,15 +7,17 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RoundController {
@@ -25,6 +27,10 @@ public class RoundController {
     private final Player player = Player.getInstance();
     private Round round;
     private List<MatchRoundItem> matchRoundItemList;
+    private List<SortRoundItem> sortRoundItemList;
+    private WordDTO sortRoundWord;
+    private Circle sortRoundImage;
+    private List<Rectangle> sortLetterContainers;
 
     @FXML
     private Label nameField;
@@ -53,6 +59,9 @@ public class RoundController {
     @FXML
     private Button gameButtonNext;
 
+    @FXML
+    private Pane roundText;
+
     public RoundController() {
         eventBus.addEventHandler(GameEvent.START_COUNTDOWN, event -> {
             clearBoxes();
@@ -64,7 +73,7 @@ public class RoundController {
         });
         eventBus.addEventHandler(GameEvent.END_COUNTDOWN, event -> {
             updateGameButton(GameStatus.HOLD);
-            clearMatchRoundItems();
+            clearMatchRoundItemsDrag();
             calculateScore();
             updateLevelStats();
         });
@@ -78,13 +87,10 @@ public class RoundController {
     public void initialize() throws FileNotFoundException {
         round = new Round(this.category, Difficulty.LOW, this.player);
         nameField.setText(player.getName());
+        updateRoundText(this.round.getCurrentLevel());
     }
 
     private void buildRound(Levels level) {
-        clearBoxes();
-        showNextButton(false);
-        updateGameButton(GameStatus.READY);
-        updateLevelStats();
         switch (level) {
             case MATCH -> buildMatchRound();
             case SORT -> buildSortRound();
@@ -104,12 +110,21 @@ public class RoundController {
                             bottomBox.getChildren().remove(item.getImageTarget());
                         }
                     }
+                    if(sortRoundItemList != null) {
+                        bottomBox.getChildren().remove(sortRoundImage);
+                        for (SortRoundItem item: sortRoundItemList
+                             ) {
+                            item.removeDraggable();
+                            topBox.getChildren().remove(item.getLetterNode());
+                            bottomBox.getChildren().remove(item.getRectangle());
+                        }
+                    }
                 }
         );
     }
 
     @FXML
-    private void clearMatchRoundItems() {
+    private void clearMatchRoundItemsDrag() {
         Platform.runLater(
                 () -> {
                     if(matchRoundItemList != null) {
@@ -155,11 +170,41 @@ public class RoundController {
 
     @FXML
     private void buildSortRound() {
-        System.out.println("Listen");
         Platform.runLater(
                 () -> {
                     Level matchLevel = this.round.getLevel(Levels.MATCH);
                     WordDTO[] words = matchLevel.getWords();
+                    sortRoundWord = words[0];
+                    List<String> lettersList = this.round.getGlossary().getShuffleWord(sortRoundWord.getValue());
+                    sortRoundItemList = new ArrayList<>();
+                    sortLetterContainers = new ArrayList<>();
+                    sortRoundImage = new Circle(100, 100, 100, Color.WHITE);
+                    Image im = new Image("file:" + basePath + sortRoundWord.getImagePath());
+                    sortRoundImage.setFill(new ImagePattern(im));
+                    sortRoundImage.setStroke(Color.LIGHTSKYBLUE);
+                    sortRoundImage.setStrokeWidth(3);
+                    sortRoundImage.getStyleClass().add("match-circle-image");
+                    bottomBox.getChildren().add(sortRoundImage);
+
+                    for (String letter:
+                         lettersList) {
+                        Label letterLabel = new Label(letter);
+                        Rectangle rectangle = new Rectangle(60,80);
+                        SortRoundItem sortLetter = new SortRoundItem(letterLabel, rectangle);
+                        letterLabel.setPrefWidth(45);
+                        letterLabel.setPrefHeight(45);
+                        letterLabel.getStyleClass().add("sort-letter");
+                        rectangle.setFill(Color.TRANSPARENT);
+                        rectangle.setStroke(Color.LIGHTPINK);
+                        rectangle.setStrokeWidth(3);
+                        rectangle.getStyleClass().add("sort-letter-container");
+                        sortLetter.makeDraggable();
+                        sortRoundItemList.add(sortLetter);
+                        sortLetterContainers.add(rectangle);
+                        topBox.getChildren().add(letterLabel);
+                        bottomBox.getChildren().add(rectangle);
+                    }
+
                 }
         );
     }
@@ -198,7 +243,22 @@ public class RoundController {
             default -> Levels.MATCH;
         };
         this.round.setCurrentLevel(nextLevel);
-        buildRound(nextLevel);
+        clearBoxes();
+        showNextButton(false);
+        updateGameButton(GameStatus.READY);
+        updateLevelStats();
+        updateRoundText(nextLevel);
+    }
+
+    @FXML
+    private void updateRoundText(Levels level) {
+        String style = switch (level) {
+            case MATCH -> "text-match";
+            case SORT -> "text-sort";
+            case LISTEN -> "text-listen";
+        };
+
+        roundText.getStyleClass().add(style);
     }
 
     @FXML
@@ -230,6 +290,11 @@ public class RoundController {
                 this.round.getScore().addScore(level, rightAnswers);
                 resolveMatchScore(this.round.getScore().getLevelScore(level));
             }
+            case SORT -> {
+                int rightAnswers = SortRound.calculateAssertions(sortRoundItemList, sortRoundWord.getValue());
+                this.round.getScore().addScore(level, rightAnswers);
+                resolveSortScore(rightAnswers);
+            }
             default -> {
             }
         }
@@ -244,6 +309,31 @@ public class RoundController {
                         ) {
                             Circle circle = (Circle) item.getImageTarget();
                             if(item.getOnTarget()) circle.setStroke(Color.GREENYELLOW);
+                        }
+                    }
+                }
+        );
+    }
+
+    @FXML
+    private void resolveSortScore(int rightAnswers) {
+        Platform.runLater(
+                () -> {
+                    if(sortRoundItemList != null) {
+                        for (int i = 0; i < sortRoundItemList.size(); i++) {
+                            Boolean isRight = sortRoundItemList.get(i).getCorrect();
+
+                            if (isRight) {
+                                sortLetterContainers.get(i).setStroke(Color.GREENYELLOW);
+                            } else {
+                                sortLetterContainers.get(i).setStroke(Color.RED);
+                            }
+                        }
+
+                        if (rightAnswers == sortRoundItemList.size()) {
+                            sortRoundImage.setStroke(Color.GREENYELLOW);
+                        } else {
+                            sortRoundImage.setStroke(Color.RED);
                         }
                     }
                 }
