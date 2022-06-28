@@ -8,6 +8,7 @@ module com.acj.aprendiendoconjuancho {
     requires org.kordamp.bootstrapfx.core;
     requires com.google.gson;
     requires javafx.graphics;
+    requires javafx.media;
 
     opens com.acj.aprendiendoconjuancho to javafx.fxml;
     exports com.acj.aprendiendoconjuancho;

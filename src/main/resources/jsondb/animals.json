@@ -31,7 +31,7 @@
     "value": "schaf",
     "difficulty": "LOW",
     "imagePath": "/src/main/resources/images/animals/oveja.png",
-    "audioPath": "/assets/words/audio/animals/oveja.mp3",
+    "audioPath": "/src/main/resources/audio/animals/schaf.mp3",
     "category": "ANIMALS",
     "language": "DEU"
   },
