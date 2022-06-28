@@ -1,37 +1,37 @@
 [
   {
     "id": 1,
-    "value": "Schwein",
+    "value": "schwein",
     "difficulty": "LOW",
-    "imagePath": "/assets/words/images/animals/cerdo.png",
-    "audioPath": "/assets/words/audio/animals/cerdo.mp3",
+    "imagePath": "/src/main/resources/images/animals/cerdo.png",
+    "audioPath": "/src/main/resources/audio/animals/schwein.mp3",
     "category": "ANIMALS",
     "language": "DEU"
   },
   {
     "id": 2,
-    "value": "Huhn",
+    "value": "huhn",
     "difficulty": "LOW",
-    "imagePath": "/assets/words/images/animals/pollo.png",
-    "audioPath": "/assets/words/audio/animals/pollo.mp3",
+    "imagePath": "/src/main/resources/images/animals/pollo.png",
+    "audioPath": "/src/main/resources/audio/animals/huhn.mp3",
     "category": "ANIMALS",
     "language": "DEU"
   },
   {
     "id": 3,
-    "value": "Rind",
+    "value": "rind",
     "difficulty": "LOW",
-    "imagePath": "/assets/words/images/animals/vaca.png",
-    "audioPath": "/assets/words/audio/animals/vaca.mp3",
+    "imagePath": "/src/main/resources/images/animals/vaca.png",
+    "audioPath": "/src/main/resources/audio/animals/rind.mp3",
     "category": "ANIMALS",
     "language": "DEU"
   },
   {
     "id": 4,
-    "value": "Schaf",
+    "value": "schaf",
     "difficulty": "LOW",
-    "imagePath": "/assets/words/images/animals/oveja.png",
-    "audioPath": "/assets/words/audio/animals/oveja.mp3",
+    "imagePath": "/src/main/resources/images/animals/oveja.png",
+    "audioPath": "/src/main/resources/audio/animals/schaf.mp3",
     "category": "ANIMALS",
     "language": "DEU"
   },
@@ -104,6 +104,114 @@
     "difficulty": "HIGH",
     "imagePath": "/assets/words/images/animals/serpiente.png",
     "audioPath": "/assets/words/audio/animals/serpiente.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 13,
+    "value": "pferd",
+    "difficulty": "LOW",
+    "imagePath": "/src/main/resources/images/animals/caballo.png",
+    "audioPath": "/src/main/resources/audio/animals/pferd.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 14,
+    "value": "panda",
+    "difficulty": "LOW",
+    "imagePath": "/src/main/resources/images/animals/panda.png",
+    "audioPath": "/src/main/resources/audio/animals/panda.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 15,
+    "value": "Kamel",
+    "difficulty": "MEDIUM",
+    "imagePath": "/assets/words/images/animals/camello.png",
+    "audioPath": "/assets/words/audio/animals/camello.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 16,
+    "value": "Fisch",
+    "difficulty": "MEDIUM",
+    "imagePath": "/assets/words/images/animals/pez.png",
+    "audioPath": "/assets/words/audio/animals/pez.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 17,
+    "value": "Wal",
+    "difficulty": "MEDIUM",
+    "imagePath": "/assets/words/images/animals/ballena.png",
+    "audioPath": "/assets/words/audio/animals/ballena.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 18,
+    "value": "Leopard",
+    "difficulty": "MEDIUM",
+    "imagePath": "/assets/words/images/animals/leopardo.png",
+    "audioPath": "/assets/words/audio/animals/leopardo.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 19,
+    "value": "Orang-Utan",
+    "difficulty": "HIGH",
+    "imagePath": "/assets/words/images/animals/orangutan.png",
+    "audioPath": "/assets/words/audio/animals/orangutan.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 20,
+    "value": "Meeres-schildkröte",
+    "difficulty": "HIGH",
+    "imagePath": "/assets/words/images/animals/tortugamarina.png",
+    "audioPath": "/assets/words/audio/animals/tortugamarina.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 21,
+    "value": "Seelöwe",
+    "difficulty": "HIGH",
+    "imagePath": "/assets/words/images/animals/leonmarino.png",
+    "audioPath": "/assets/words/audio/animals/leonmarino.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 22,
+    "value": "Krokodil",
+    "difficulty": "HIGH",
+    "imagePath": "/assets/words/images/animals/cocodrilo.png",
+    "audioPath": "/assets/words/audio/animals/cocodrilo.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 23,
+    "value": "Faultier",
+    "difficulty": "HIGH",
+    "imagePath": "/assets/words/images/animals/perezoso.png",
+    "audioPath": "/assets/words/audio/animals/perezoso.mp3",
+    "category": "ANIMALS",
+    "language": "DEU"
+  },
+  {
+    "id": 24,
+    "value": "Vogel",
+    "difficulty": "HIGH",
+    "imagePath": "/assets/words/images/animals/pajaro.png",
+    "audioPath": "/assets/words/audio/animals/pajaro.mp3",
     "category": "ANIMALS",
     "language": "DEU"
   }
