@@ -2,16 +2,25 @@ package com.acj.aprendiendoconjuancho;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.media.MediaView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -61,7 +70,14 @@ public class RoundController {
     @FXML
     private Pane roundText;
 
+    @FXML
+    private MediaView mediaview;
 
+    @FXML
+    private Circle playerImage;
+
+    @FXML
+    private TextField listenField;
 
     public RoundController() {
         eventBus.addEventHandler(GameEvent.START_COUNTDOWN, event -> {
@@ -120,6 +136,10 @@ public class RoundController {
                             bottomBox.getChildren().remove(item.getRectangle());
                         }
                     }
+                    if(listenField != null) {
+                        bottomBox.getChildren().remove(playerImage);
+                        bottomBox.getChildren().remove(listenField);
+                    }
                 }
         );
     }
@@ -145,6 +165,8 @@ public class RoundController {
                     Level matchLevel = this.round.getLevel(Levels.MATCH);
                     WordDTO[] words = matchLevel.getWords();
                     matchRoundItemList = new ArrayList<>();
+                    bottomBox.setPrefWidth(400);
+                    bottomBox.setLayoutX(350);
 
                     for (WordDTO word : words) {
                         Label wordLabel = new Label();
@@ -185,6 +207,8 @@ public class RoundController {
                     sortRoundImage.setStroke(Color.LIGHTSKYBLUE);
                     sortRoundImage.setStrokeWidth(3);
                     sortRoundImage.getStyleClass().add("match-circle-image");
+                    bottomBox.setPrefWidth(750);
+                    bottomBox.setLayoutX(200);
                     bottomBox.getChildren().add(sortRoundImage);
 
                     for (String letter:
@@ -216,9 +240,36 @@ public class RoundController {
             Level matchLevel = this.round.getLevel(Levels.MATCH);
             WordDTO[] words = matchLevel.getWords();
             listenRoundWord = words[1];
-
-
+            mediaview = new MediaView();
+            playerImage = new Circle(150, 150, 150, Color.WHITE);
+            Image im = new Image("file:" + basePath + "/src/main/resources/images/play.png");
+            playerImage.setStroke(Color.LIGHTSKYBLUE);
+            playerImage.setStrokeWidth(3);
+            playerImage.setFill(new ImagePattern(im));
+            playerImage.setOnMouseClicked(event -> {
+                onClickPlayer(event, listenRoundWord);
+            });
+            listenField = new TextField();
+            listenField.getStyleClass().add("listen-input");
+            listenField.setAlignment(Pos.CENTER);
+            bottomBox.setPrefWidth(400);
+            bottomBox.setLayoutX(350);
+            bottomBox.setColumnHalignment(HPos.CENTER);
+            bottomBox.getChildren().add(playerImage);
+            bottomBox.getChildren().add(listenField);
         });
+    }
+
+    @FXML
+    private void onClickPlayer(MouseEvent event, WordDTO word) {
+        if(mediaview.getMediaPlayer() == null) {
+            Media media = new Media("file:" + basePath + word.getAudioPath());
+            MediaPlayer player = new MediaPlayer(media);
+            mediaview.setMediaPlayer(player);
+        }
+
+        mediaview.getMediaPlayer().seek(mediaview.getMediaPlayer().getStartTime());
+        mediaview.getMediaPlayer().play();
     }
 
     @FXML
@@ -302,7 +353,10 @@ public class RoundController {
                 this.round.getScore().addScore(level, rightAnswers);
                 resolveSortScore(rightAnswers);
             }
-            default -> {
+            case LISTEN -> {
+                int rightAnswers = ListenRound.calculateAssertions(listenField.getText(), listenRoundWord.getValue());
+                this.round.getScore().addScore(level, rightAnswers);
+                resolveListenScore(rightAnswers);
             }
         }
     }
@@ -342,6 +396,20 @@ public class RoundController {
                         } else {
                             sortRoundImage.setStroke(Color.RED);
                         }
+                    }
+                }
+        );
+    }
+
+    @FXML
+    private void resolveListenScore(int rightAnswers) {
+        Platform.runLater(
+                () -> {
+                    listenField.setDisable(true);
+                    if (rightAnswers > 0) {
+                        playerImage.setStroke(Color.GREENYELLOW);
+                    } else {
+                        playerImage.setStroke(Color.RED);
                     }
                 }
         );

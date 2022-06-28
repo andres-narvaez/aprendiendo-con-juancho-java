@@ -17,10 +17,11 @@ public class WordDTO {
     public String value;
     public Difficulty difficulty;
     public String imagePath;
+
     public String audioPath;
+
     public Categories category;
     public String language;
-
     /**
      * @param id int identifier of the word
      * @param value string is the word itself
@@ -38,6 +39,14 @@ public class WordDTO {
         this.audioPath = audioPath;
         this.category = category;
         this.language = language;
+    }
+
+    public String getAudioPath() {
+        return audioPath;
+    }
+
+    public void setAudioPath(String audioPath) {
+        this.audioPath = audioPath;
     }
 
     /**

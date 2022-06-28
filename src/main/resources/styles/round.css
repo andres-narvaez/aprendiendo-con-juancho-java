@@ -74,3 +74,11 @@
 .text-listen {
     -fx-background-image: url("../images/text-listen.png");
 }
+
+.listen-input {
+    -fx-max-width: 400px;
+    -fx-pref-width: 320px;
+    -fx-background-radius: 20px;
+    -fx-min-height: 60px;
+    -fx-text-alignment: center;
+}
