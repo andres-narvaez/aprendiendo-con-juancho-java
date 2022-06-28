@@ -55,9 +55,9 @@ public class ComplexityRules {
     private int getTimeBasedOnDifficulty(Difficulty difficulty) {
 
         return switch (difficulty) {
-            case LOW -> 90;
-            case MEDIUM -> 70;
-            case HIGH -> 60;
+            case LOW -> 45;
+            case MEDIUM -> 40;
+            case HIGH -> 35;
         };
     }
 

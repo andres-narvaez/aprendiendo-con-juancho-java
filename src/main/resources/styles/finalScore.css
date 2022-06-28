@@ -2,8 +2,12 @@
     -fx-background-image: url("../images/bk-welcome.png");
 }
 
-.name-input {
-    -fx-max-width: 300px;
-    -fx-background-radius: 20px;
-    -fx-min-height: 40px;
+.points-overall {
+    -fx-border-radius: 140px;
+    -fx-border-color: #FF17B3;
+    -fx-border-style: solid;
+    -fx-border-width: 3px;
+    -fx-background-color: #FF8DD9;
+    -fx-background-radius: 140px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 10, 0, 3, 4);
 }

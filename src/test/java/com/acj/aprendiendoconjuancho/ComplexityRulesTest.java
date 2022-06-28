@@ -21,7 +21,7 @@ class ComplexityRulesTest {
 
     @Test
     void getStartTime() {
-        assertEquals(90, instance.getStartTime());
+        assertEquals(45, instance.getStartTime());
     }
 
     @Test

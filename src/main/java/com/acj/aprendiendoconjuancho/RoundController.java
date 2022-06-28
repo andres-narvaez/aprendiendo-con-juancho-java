@@ -252,9 +252,7 @@ public class RoundController {
             playerImage.setStroke(Color.LIGHTSKYBLUE);
             playerImage.setStrokeWidth(3);
             playerImage.setFill(new ImagePattern(im));
-            playerImage.setOnMouseClicked(event -> {
-                onClickPlayer(event, listenRoundWord);
-            });
+            playerImage.setOnMouseClicked(event -> onClickPlayer(event, listenRoundWord));
             listenField = new TextField();
             listenField.getStyleClass().add("listen-input");
             listenField.setAlignment(Pos.CENTER);
@@ -301,17 +299,21 @@ public class RoundController {
     @FXML
     private void onClickNextRound(ActionEvent event) {
         Levels currentLevel = this.round.getCurrentLevel();
-        Levels nextLevel = switch (currentLevel) {
-            case MATCH -> Levels.SORT;
-            case SORT -> Levels.LISTEN;
-            default -> Levels.MATCH;
-        };
-        this.round.setCurrentLevel(nextLevel);
-        clearBoxes();
-        showNextButton(false);
-        updateGameButton(GameStatus.READY);
-        updateLevelStats();
-        updateRoundText(nextLevel);
+        if(currentLevel == Levels.LISTEN) {
+            getFinalScore(event);
+        } else {
+            Levels nextLevel = switch (currentLevel) {
+                case MATCH -> Levels.SORT;
+                case SORT -> Levels.LISTEN;
+                default -> Levels.MATCH;
+            };
+            this.round.setCurrentLevel(nextLevel);
+            clearBoxes();
+            showNextButton(false);
+            updateGameButton(GameStatus.READY);
+            updateLevelStats();
+            updateRoundText(nextLevel);
+        }
     }
 
     @FXML

@@ -4,7 +4,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -21,32 +20,32 @@
             <Image url="@../../../images/logo-main.png" />
         </image>
     </ImageView>
-    <Label id="player-name" fx:id="nameField" textAlignment="CENTER" text="name">
+    <Label id="player-name" fx:id="nameField" text="name" textAlignment="CENTER">
         <font>
-            <Font size="27.0" />
+            <Font name="Arial Black" size="60.0" />
         </font>
         <VBox.margin>
             <Insets top="20.0" />
         </VBox.margin>
     </Label>
-    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="60.0" textAlignment="CENTER" text="Aprendiste mucho">
+    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" text="Aprendiste mucho" textAlignment="CENTER">
         <font>
-            <Font size="25.0" />
+            <Font name="Arial Black" size="41.0" />
         </font>
     </Label>
-    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="60.0" textAlignment="CENTER" text="tu puntaje fue">
+    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" text="tu puntaje fue" textAlignment="CENTER">
         <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="26.0" />
         </font>
     </Label>
-    <Label fx:id="overallPoints" alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="points-overall" text="0" textAlignment="CENTER" textFill="WHITE">
+    <Label fx:id="overallPoints" alignment="CENTER" contentDisplay="CENTER" prefHeight="130.0" prefWidth="100.0" styleClass="points-overall" text="999" textAlignment="CENTER" textFill="WHITE">
         <font>
-            <Font size="25.0" />
+            <Font name="Arial Black" size="29.0" />
         </font>
     </Label>
-    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="points-overall" textAlignment="CENTER" text="puntos">
+    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" text="puntos" textAlignment="CENTER">
         <font>
-            <Font size="25.0" />
+            <Font name="Arial Bold" size="26.0" />
         </font>
     </Label>
     <Button onAction="#playAgain" style="-fx-border-radius: 50px;" styleClass="base-button" text="INICIAR DE NUEVO" textAlignment="CENTER">
