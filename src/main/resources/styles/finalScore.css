@@ -1,0 +1,9 @@
+.main-container {
+    -fx-background-image: url("../images/bk-welcome.png");
+}
+
+.name-input {
+    -fx-max-width: 300px;
+    -fx-background-radius: 20px;
+    -fx-min-height: 40px;
+}

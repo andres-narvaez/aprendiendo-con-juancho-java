@@ -2,7 +2,13 @@ package com.acj.aprendiendoconjuancho;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -17,6 +23,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.io.IOException;
 
 public class RoundController {
     EventBus eventBus = ServiceLocator.INSTANCE.getService(EventBus.class);
@@ -285,7 +293,7 @@ public class RoundController {
         };
 
         Platform.runLater(
-                () -> gameButton.setText(text)
+            () -> gameButton.setText(text)
         );
     }
 
@@ -362,5 +370,22 @@ public class RoundController {
                     overallPoints.setText(String.valueOf(this.round.getScore().getOverallScore()));
                 }
         );
+    }
+
+    @FXML
+    private void getFinalScore(Event event) {
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("finalScore.fxml"));
+            FinalScoreController controller = new FinalScoreController();
+            loader.setController(controller);
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            window.setScene(scene);
+            window.show();
+        } catch (IOException e) {
+            System.err.printf("Error: %s%n", e.getMessage());
+        }
     }
 }
