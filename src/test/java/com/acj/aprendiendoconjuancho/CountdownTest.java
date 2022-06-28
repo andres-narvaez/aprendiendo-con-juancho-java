@@ -14,6 +14,7 @@ class CountdownTest {
 
     @BeforeEach
     void setUp() {
+        ServiceLocator.INSTANCE.registerService(EventBus.class, EventBusProvider.class);
         countdown = new Countdown();
         countdown.start(3000);
     }
@@ -31,6 +32,6 @@ class CountdownTest {
     @Test
     @Timeout(value = 1000, unit = TimeUnit.MILLISECONDS)
     void getCount() {
-        Assertions.assertEquals(null, countdown.getCount());
+        Assertions.assertEquals("50:00", countdown.getCount());
     }
 }
