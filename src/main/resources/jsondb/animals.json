@@ -4,7 +4,7 @@
     "value": "schwein",
     "difficulty": "LOW",
     "imagePath": "/src/main/resources/images/animals/cerdo.png",
-    "audioPath": "/assets/words/audio/animals/cerdo.mp3",
+    "audioPath": "/src/main/resources/audio/animals/schwein.mp3",
     "category": "ANIMALS",
     "language": "DEU"
   },
@@ -13,7 +13,7 @@
     "value": "huhn",
     "difficulty": "LOW",
     "imagePath": "/src/main/resources/images/animals/pollo.png",
-    "audioPath": "/assets/words/audio/animals/pollo.mp3",
+    "audioPath": "/src/main/resources/audio/animals/huhn.mp3",
     "category": "ANIMALS",
     "language": "DEU"
   },
@@ -22,7 +22,7 @@
     "value": "rind",
     "difficulty": "LOW",
     "imagePath": "/src/main/resources/images/animals/vaca.png",
-    "audioPath": "/assets/words/audio/animals/vaca.mp3",
+    "audioPath": "/src/main/resources/audio/animals/rind.mp3",
     "category": "ANIMALS",
     "language": "DEU"
   },
@@ -112,7 +112,7 @@
     "value": "pferd",
     "difficulty": "LOW",
     "imagePath": "/src/main/resources/images/animals/caballo.png",
-    "audioPath": "/assets/words/audio/animals/caballo.mp3",
+    "audioPath": "/src/main/resources/audio/animals/pferd.mp3",
     "category": "ANIMALS",
     "language": "DEU"
   },
@@ -121,7 +121,7 @@
     "value": "panda",
     "difficulty": "LOW",
     "imagePath": "/src/main/resources/images/animals/panda.png",
-    "audioPath": "/assets/words/audio/animals/panda.mp3",
+    "audioPath": "/src/main/resources/audio/animals/panda.mp3",
     "category": "ANIMALS",
     "language": "DEU"
   },

@@ -3,11 +3,9 @@ package com.acj.aprendiendoconjuancho;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -31,6 +29,7 @@ public class RoundController {
     private WordDTO sortRoundWord;
     private Circle sortRoundImage;
     private List<Rectangle> sortLetterContainers;
+    private WordDTO listenRoundWord;
 
     @FXML
     private Label nameField;
@@ -61,6 +60,7 @@ public class RoundController {
 
     @FXML
     private Pane roundText;
+
 
     public RoundController() {
         eventBus.addEventHandler(GameEvent.START_COUNTDOWN, event -> {
@@ -211,7 +211,13 @@ public class RoundController {
 
     @FXML
     private void buildListenRound() {
+        Platform.runLater(() -> {
+            Level matchLevel = this.round.getLevel(Levels.MATCH);
+            WordDTO[] words = matchLevel.getWords();
+            listenRoundWord = words[1];
 
+
+        });
     }
 
     @FXML
