@@ -32,6 +32,6 @@ class CountdownTest {
     @Test
     @Timeout(value = 1000, unit = TimeUnit.MILLISECONDS)
     void getCount() {
-        Assertions.assertEquals("50:00", countdown.getCount());
+        Assertions.assertEquals(null, countdown.getCount());
     }
 }
